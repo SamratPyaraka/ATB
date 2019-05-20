@@ -12,7 +12,7 @@ agent = Agent(window_size)
 data = getStockDataVec(stock_name)
 l = len(data) - 1
 batch_size = 32
-base_path = "D:\AutomatedTradingBot\Reinforcement_Learning_for_Stock_Prediction-master\\"
+base_path = "ATB/"
 
 for e in range(episode_count + 1):
 	print("Episode " + str(e) + "/" + str(episode_count))

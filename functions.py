@@ -12,7 +12,7 @@ def formatPrice(n):
 # returns the vector containing stock data from a fixed file
 def getStockDataVec(key):
 	vec = []
-	lines = open(os.path.join(r"D:\AutomatedTradingBot\Reinforcement_Learning_for_Stock_Prediction-master\data\\",  key + ".csv"), "rU").read().splitlines()
+	lines = open(os.path.join("ATB/data/",  key + ".csv"), "rU").read().splitlines()
 
 	for line in lines[1:]:
 		vec.append(float(line.split(",")[4]))
