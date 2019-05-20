@@ -6,8 +6,11 @@ if len(sys.argv) != 4:
 	print("Usage: python train.py [stock] [window] [episodes]")
 	exit()
 
-stock_name, window_size, episode_count = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
+#stock_name, window_size, episode_count = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
 
+stock_name = "new_icici"
+window_size = 10
+episode_count = 200
 agent = Agent(window_size)
 data = getStockDataVec(stock_name)
 l = len(data) - 1
