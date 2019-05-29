@@ -9,9 +9,7 @@ if len(sys.argv) != 3:
 	print("Usage: python evaluate.py [stock] [model]")
 	exit()
 
-#stock_name, model_name = sys.argv[1], sys.argv[2]
-stock_name = "new_icici_2019"
-model_name = "model_ep200"
+stock_name, model_name = sys.argv[1], sys.argv[2]
 model = load_model("models/" + model_name)
 window_size = model.layers[0].input.shape.as_list()[1]
 
@@ -21,21 +19,24 @@ l = len(data) - 1
 batch_size = 32
 
 state = getState(data, 0, window_size + 1)
+#print(state)
 total_profit = 0
-agent.inventory = []
+agent.inventory = [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000]
 
 for t in range(l):
 	action = agent.act(state)
-
+	#print(action, len(agent.inventory))
 	# sit
 	next_state = getState(data, t + 1, window_size + 1)
 	reward = 0
 
 	if action == 1: # buy
+		#print("inside action=1")
 		agent.inventory.append(data[t])
 		print("Buy: " + formatPrice(data[t]))
 
 	elif action == 2 and len(agent.inventory) > 0: # sell
+		#print("inside action=2")
 		bought_price = agent.inventory.pop(0)
 		reward = max(data[t] - bought_price, 0)
 		total_profit += data[t] - bought_price
